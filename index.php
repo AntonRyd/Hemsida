@@ -1,4 +1,10 @@
-<?php include("includes/head.php") ?>
+<?php
+include("config.php");
+
+include("includes/head.php");
+ 
+?>
+
     <title>CykelEliten</title>
     
 </head>
@@ -7,67 +13,11 @@
     
 
     <!-- Preloader, när sidan laddas ser användaren en blå cirekl som laddas, detta används för att göra användaren road  -->
-    <div class="preloader">
-        <div class="preloader-inner">
-            <div class="preloader-icon">
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </div>
+    
     <!-- Slutar Preloader -->
 
     <!-- Start Header Area -->
-    <header class="header">
-        <div class="navbar-area">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-12">
-                        <nav class="navbar navbar-expand-lg">
-                            <a class="navbar-brand logo" href="index.html">
-                                <img class="logo1" src="assets/images/logo/logo.png" alt="Logo" />
-                            </a>
-                            <button class="navbar-toggler" type="button" data-toggle="collapse"
-                                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                                aria-expanded="false" aria-label="Toggle navigation">
-                                <span class="toggler-icon"></span>
-                                <span class="toggler-icon"></span>
-                                <span class="toggler-icon"></span>
-                            </button>
-
-                            <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
-                                <ul id="nav" class="navbar-nav ml-auto">
-                                    <li class="nav-item">
-                                        <a class="active" href="index.html">Hem</a></li>
-                                    <li class="nav-item">
-                                        <a href="about-us.html">Om oss</a>
-                                    </li>
-                                    <li class="nav-item"><a href="#">Service</a></li>
-                                    
-                                    <li class="nav-item"><a href="#">Cyklar</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="404.html">404 Error</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="nav-item"><a href="#">Blog</a></li>
-                                    <li class="nav-item"><a href="contact.html">Kontakt</a></li>
-                                </ul>
-                            </div>
-                            <!-- navbar collapse -->
-                            <div class="button">
-                            
-                            </div>
-                        </nav>
-                        <!-- navbar -->
-
-                    </div>
-                </div>
-                <!-- row -->
-            </div>
-            <!-- container -->
-        </div>
-        <!-- navbar area -->
-    </header>
+    <?php include("navbar.php"); ?>
     <!-- Slutar Header Area -->
 
     <!-- Start Hero Area -->
@@ -79,12 +29,12 @@
                     <div class="col-lg-6 co-12">
                         <div class="home-slider">
                             <div class="hero-text">
-                                <h1 class="wow fadeInUp" data-wow-delay=".3">Återförsäljare till Trek .</h1>
-                                <p class="wow fadeInUp" data-wow-delay=".5s"> Trek, världens bästa cyklar för olika prisklasser samt användning.
+                                <h1 class="wow fadeInUp" data-wow-delay=".3">Återförsäljare till Trek </h1>
+                                <p class="wow fadeInUp" data-wow-delay=".5s"> Trek, cyklar för olika prisklasser samt användning.
                                      <br> Kontakta oss för frågor som du undrar över.
                                     <br>Kontaktuppgifter syns längre ner.</p>
                                 <div class="button wow fadeInUp" data-wow-delay=".7s">
-                                    <a href="about-us.html" class="btn">Cyklar</a>
+                                    <a href="shop.php" class="btn">Cyklar</a>
                                 </div>
                             </div>
                         </div>
@@ -198,10 +148,16 @@
     </section>
 
    
-
-    
     
     <!-- Start nyhets mail -->
+<?php 
+if (isset($_POST["email"])) {
+    include("mail.php");
+    sendMail($_POST["email"], "Newsletter confirmation", "You have been subscribed to the Cykeleliten newletter with this email: " . $_POST["email"]);
+}
+?>
+    
+
     <section class="newsletter-area section">
         <div class="container">
             <div class="row ">
@@ -210,8 +166,8 @@
                     <div class="subscribe-text wow fadeInLeft" data-wow-delay=".2s">
                         <h6>Skriv upp dig för mer information</h6>
                         <p class="">Skriv upp för att få nyheter <br> och för att få bättre priser</p>
-                        <form action="mail/mail.php" method="get" target="_blank" class="newsletter-inner">
-                            <input name="EMAIL" placeholder="Din mail" class="common-input"
+                        <form action= '' method="POST" target="_blank" class="newsletter-inner">
+                            <input name="email" placeholder="Din mail" class="common-input"
                                 onfocus="this.placeholder = ''" onblur="this.placeholder = 'Din mail'"
                                 required="" type="email">
                             <div class="button">
